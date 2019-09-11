@@ -10,10 +10,17 @@ if (!environment.production) {
   const scenarios: Scenarios = {
     default: [
       {
-        url: /random-widget/,
+        url: /widgets/,
         method: "GET",
-        response: {},
+        response: [...Array(10)].map((_, i) => ({ id: i + 1 })),
         delay: 200,
+        responseCode: 200
+      },
+      {
+        url: /new-widget/,
+        method: "GET",
+        response: (() => ({ id: Math.floor(Math.random() * 100 + 1) }))(),
+        delay: 2000,
         responseCode: 200
       }
     ]

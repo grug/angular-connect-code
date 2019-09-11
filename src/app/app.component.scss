@@ -3,14 +3,29 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 1000px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
 }
 
 .grid-item {
+  display: flex;
   border: 1px solid black;
+  height: 100px;
+  width: 150px;
+  border-radius: 10px;
+  font-size: 2rem;
+
+  div {
+    margin: auto;
+  }
+}
+
+.add-widget-button {
+  height: 100px;
+  border-radius: 24px;
+  font-size: 1.2rem;
 }
