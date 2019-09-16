@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   }
 
   addNewWidget() {
-    console.log("add new widget");
     this.http
       .get("http://localhost:3000/new-widget")
       .subscribe((widget: Widget) => {

@@ -4,7 +4,11 @@ import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { AppModule } from "./app/app.module";
 import { environment } from "./environments/environment";
 
-import { injectMocks, Scenarios } from "data-mocks";
+import {
+  injectMocks,
+  extractScenarioFromLocation,
+  Scenarios
+} from "data-mocks";
 
 if (!environment.production) {
   const scenarios: Scenarios = {
@@ -12,21 +16,21 @@ if (!environment.production) {
       {
         url: /widgets/,
         method: "GET",
-        response: [...Array(10)].map((_, i) => ({ id: i + 1 })),
+        response: [...Array(10)].map((_, i) => ({ id: ++i })),
         delay: 200,
         responseCode: 200
       },
       {
         url: /new-widget/,
         method: "GET",
-        response: (() => ({ id: Math.floor(Math.random() * 100 + 1) }))(),
+        response: { id: Math.floor(Math.random() * 100 + 1) },
         delay: 2000,
         responseCode: 200
       }
     ]
   };
 
-  injectMocks(scenarios);
+  injectMocks(scenarios, extractScenarioFromLocation(window.location));
 }
 
 if (environment.production) {
